@@ -1,3 +1,15 @@
+/*
+Mergesort
+
+1.0.0
+
+Created by: Moussa Mikhail
+
+This program is a demonstration of the Mergesort algorithm.
+It takes an array of strings and sorts them in alphabetical order.
+The input must be in the form of a comma separated list of strings.
+The output is the sorted array of strings.
+ */
 package mergesort;
 
 import org.jetbrains.annotations.NotNull;
@@ -9,7 +21,17 @@ public class Mergesort {
 
     public static void main(String... args) {
 
-        var sorted = mergesort(List.of(args));
+        if (args.length == 0) {
+            return;
+        }
+
+        String csvList = args[0];
+
+
+
+        String[] array = csvList.split(",");
+
+        var sorted = mergesort(List.of(array));
 
         System.out.println(sorted);
     }
