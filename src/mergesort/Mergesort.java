@@ -5,15 +5,10 @@ Mergesort
 
 Created by: Moussa Mikhail
 
-This program is a demonstration of the Mergesort algorithm.
+This program is a implementation of the Mergesort algorithm.
 It takes an array of strings and sorts them in alphabetical order.
-The input must be in the form of a comma separated list of strings.
-The output is the sorted array of strings.
  */
-package mergesort;
-
-import org.jetbrains.annotations.NotNull;
-
+ 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,23 +17,19 @@ public class Mergesort {
     public static void main(String... args) {
 
         if (args.length == 0) {
+			
             return;
         }
 
-        String csvList = args[0];
-
-
-
-        String[] array = csvList.split(",");
-
-        var sorted = mergesort(List.of(array));
+        var sorted = mergesort(List.of(args));
 
         System.out.println(sorted);
     }
 
-    public static <T extends Comparable<T>> @NotNull List<T> mergesort(@NotNull List<T> list) {
+    public static <T extends Comparable<T>> List<T> mergesort(List<T> list) {
 
         if (list.size() <= 1) {
+			
             return list;
         }
 
@@ -47,12 +38,16 @@ public class Mergesort {
         List<T> left = list.subList(0, middle);
 
         List<T> right = list.subList(middle, list.size());
+		
+		List<T> sortedLeft = mergesort(left);
+		
+		List<T> sortedRight = mergesort(right);
 
-        return merge(mergesort(left), mergesort(right));
+        return merge(sortedLeft, sortedRight);
 
     }
 
-    private static <T extends Comparable<T>> @NotNull List<T> merge(@NotNull List<T> left, @NotNull List<T> right) {
+    private static <T extends Comparable<T>> List<T> merge(List<T> left, List<T> right) {
 
         List<T> merged = new ArrayList<>();
 
